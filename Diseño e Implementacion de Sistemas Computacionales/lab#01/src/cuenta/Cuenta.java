@@ -1,19 +1,19 @@
 package cuenta;
 
-public class Cuenta{
 
-    private String nombre;
-    private String nroCuenta;
-    private double interes;
-    private double saldo;
+public class Cuenta {
 
-    public Cuenta(){
-        
+   private String nombre;
+   private String Nrodecuenta;
+   private double interes;
+   private double saldo;
+
+    public Cuenta() {
     }
-
-    public Cuenta(String nombre, String nroCuenta, double interes, double saldo) {
+   
+    public Cuenta(String nombre, String Nrodecuenta, double interes, double saldo) {
         this.nombre = nombre;
-        this.nroCuenta = nroCuenta;
+        this.Nrodecuenta = Nrodecuenta;
         this.interes = interes;
         this.saldo = saldo;
     }
@@ -26,12 +26,12 @@ public class Cuenta{
         this.nombre = nombre;
     }
 
-    public String getNroCuenta() {
-        return nroCuenta;
+    public String getNrodecuenta() {
+        return Nrodecuenta;
     }
 
-    public void setNroCuenta(String nroCuenta) {
-        this.nroCuenta = nroCuenta;
+    public void setNrodecuenta(String Nrodecuenta) {
+        this.Nrodecuenta = Nrodecuenta;
     }
 
     public double getInteres() {
@@ -49,34 +49,39 @@ public class Cuenta{
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
-
+    
+   
     public boolean ingreso(double importe){
-        if (importe > 0) {
-            saldo += importe;
-            return true;
+        if(importe > 0){
+            saldo+= importe;
+        return true;
         }else{
-            return false;
-        }
+        return false;
+        
+    }
     }
     
-    public boolean egreso(double importe){
-        if (importe > 0 && saldo >= importe) {
-            saldo -= importe; 
+    public boolean extraccion(double importe){
+        if(importe > 0 && importe<=saldo){
+            saldo-= importe;
             return true;
         }else{
-            return false;
+        return false;
         }
+    
     }
     
-    public boolean transferencia(Cuenta cuentaDestino, double importe){
-          if(  egreso(importe) &&  cuentaDestino.ingreso(importe)){
-              return true;
-          }
-          else{
-              return false;
-          }
-            
+    
+    public boolean transferencia(Cuenta cuentaDestino,double importe){
+   if (extraccion(importe) && cuentaDestino.ingreso(importe)){
+        return true;
+    }else{
+            return false;
+            }
+    
     }
+    
+    
     
     
 }
